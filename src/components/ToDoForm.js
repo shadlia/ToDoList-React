@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export const ToDoForm = ({ OnAddtodo }) => {
+export const ToDoForm = ({ OnAddtodo, OnShowAdd }) => {
   const [val, setVal] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -9,6 +9,9 @@ export const ToDoForm = ({ OnAddtodo }) => {
   };
   return (
     <div>
+      <button type="submit" className="close-btn-todo" onClick={OnShowAdd}>
+        X
+      </button>
       <form className="TodoForm" onSubmit={handleSubmit}>
         <input
           type="text"
@@ -18,7 +21,7 @@ export const ToDoForm = ({ OnAddtodo }) => {
           onChange={(e) => setVal(e.target.value)}
         ></input>
         <button type="submit" className="todo-btn">
-          Add Task
+          Add
         </button>
       </form>
     </div>

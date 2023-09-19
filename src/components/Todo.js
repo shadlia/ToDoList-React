@@ -4,6 +4,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export const Todo = ({ task, toggleComplete, OnDeleteTask, onEditTask }) => {
   return (
     <div className="Todo">
+      <input
+        type="checkbox"
+        onClick={() => toggleComplete(task.id)}
+        checked={task.completed}
+      />
+
       <p
         className={`${task.completed ? "completed" : ""}`}
         onClick={() => toggleComplete(task.id)}
@@ -17,9 +23,14 @@ export const Todo = ({ task, toggleComplete, OnDeleteTask, onEditTask }) => {
           <FontAwesomeIcon
             icon={faPenToSquare}
             onClick={() => onEditTask(task.id)}
+            className="EditIcon"
           />
         )}
-        <FontAwesomeIcon icon={faTrash} onClick={() => OnDeleteTask(task.id)} />
+        <FontAwesomeIcon
+          icon={faTrash}
+          onClick={() => OnDeleteTask(task.id)}
+          className="trashIcon"
+        />
       </div>
     </div>
   );

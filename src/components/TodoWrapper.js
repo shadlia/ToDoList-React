@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ToDoForm } from "./ToDoForm";
 import { v4 as uuidv4 } from "uuid";
 import { Todo } from "./Todo";
@@ -6,7 +6,9 @@ import { EditToDoForm } from "./EditToDoForm";
 uuidv4();
 export const TodoWrapper = () => {
   const [ShowAddTask, setShowAddTask] = useState(true);
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(() => {
+    return JSON.parse(localStorage.getItem("tasks")) || [];
+  });
   const [TaskToEdit, setTaskToEdit] = useState(null);
   const handleAddtodo = (todo) => {
     if (!todo) return;
@@ -49,15 +51,23 @@ export const TodoWrapper = () => {
     );
     setTaskToEdit(null);
   };
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(todos));
+  }, [todos]);
+
   return (
     <div className="TodoWrapper">
-      <h1>Get things Done now</h1>
-      <button className="close-btn" onClick={handleShowAddTask}>
-        {ShowAddTask ? "X" : "+ New Task"}
-      </button>
-      {ShowAddTask && <ToDoForm OnAddtodo={handleAddtodo} />}
+      {ShowAddTask ? (
+        <ToDoForm OnAddtodo={handleAddtodo} OnShowAdd={handleShowAddTask} />
+      ) : (
+        <button className="close-btn" onClick={handleShowAddTask}>
+          + New Task
+        </button>
+      )}
+      <h1> {todos.length === 0 ? "Get things Done now" : "Your tasks"}</h1>
       <div className="start-adding">
-        {todos.length === 0 && ShowAddTask === false
+        {todos.length === 0
           ? "start adding tasks  ..."
           : todos.map((todo, index) =>
               todo.isEditing ? (

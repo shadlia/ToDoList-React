@@ -8,15 +8,35 @@
 }
 
 body {
-  background: #63b9db;
+  position: relative;
+  background-image: url("../public/background.jpg");
+  background-size: cover;
+  background-position: center;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh; /* Set the height to fill the viewport */
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Adjust the alpha value (0.5 for 50% opacity) */
 }
 
 .App {
   text-align: center;
   width: 500px;
+  height: 800px;
 }
 
 h1 {
@@ -34,23 +54,27 @@ h1 {
 }
 
 .TodoForm {
-  width: 100%;
-  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #63b9db;
+  color: #fff;
+  border-radius: 5px;
+  margin-bottom: 2rem;
+  border: 1px solid #63b9db;
 }
 
 .todo-input {
   outline: none;
   background: none;
-  border: 1px solid #63b9db;
-  padding: 0.5rem 1rem;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
-  width: 300px;
+  width: 80%;
   color: #fff;
+  border: none;
+  padding-left: 10px;
 }
 
 .todo-input::placeholder {
-  color: #ffffff4d;
+  color: #13131365;
 }
 
 .todo-btn {
@@ -60,13 +84,26 @@ h1 {
   padding: 0.55rem;
   cursor: pointer;
 }
+.close-btn-todo {
+  color: #ffffff;
+  border: none;
+  padding: 3px;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: #e43b3b;
+  position: relative;
+  top: 45px;
+  left: 53%;
+}
 .close-btn {
   position: absolute;
   top: 10px; /* Adjust the top position as needed */
   right: 10px; /* Adjust the right position as needed */
-  background: #63b9db;
+  background: #63dba3;
   border: none;
-  color: #fff;
+  color: #000000;
   cursor: pointer;
   padding: 0.2rem;
   border-radius: 10%;
@@ -81,7 +118,7 @@ h1 {
   align-items: center;
   background: #63b9db;
   color: #fff;
-  padding: 0.75rem 1rem;
+  padding: 1rem 1rem;
   border-radius: 5px;
   margin-bottom: 1rem;
   cursor: pointer;
@@ -95,3 +132,12 @@ h1 {
   color: #aed1ff;
   text-decoration: line-through;
 }
+.trashIcon {
+  color: #e43b3b;
+}
+
+.EditIcon {
+  color: #1cdf4c;
+}
+/*******/
+/* Custom checkbox container */
