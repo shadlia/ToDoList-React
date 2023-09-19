@@ -58,6 +58,8 @@ export const TodoWrapper = () => {
 
   return (
     <div className="TodoWrapper">
+      <h1> {todos.length === 0 ? "Get things Done now" : "Your tasks"}</h1>
+
       {ShowAddTask ? (
         <ToDoForm OnAddtodo={handleAddtodo} OnShowAdd={handleShowAddTask} />
       ) : (
@@ -65,7 +67,6 @@ export const TodoWrapper = () => {
           + New Task
         </button>
       )}
-      <h1> {todos.length === 0 ? "Get things Done now" : "Your tasks"}</h1>
       <div className="start-adding">
         {todos.length === 0
           ? "start adding tasks  ..."
